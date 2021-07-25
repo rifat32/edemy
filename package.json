@@ -9,11 +9,12 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
-    "lint": "next lint -p $PORT",
-    "heroku-postbuild": "npm run"
+    "start": "next start -p $PORT",
+    "heroku-postbuild": "npm run",
+    "lint": "next lint "
+   
   },
-  
+
   "dependencies": {
     "@ant-design/icons": "^4.6.2",
     "antd": "^4.16.6",
