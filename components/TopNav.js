@@ -29,7 +29,7 @@ const TopNav = () => {
         window.localStorage.clear();
         setReady(false)
         toast("Signout Success");
-      location.replace("http://localhost:3000/");  
+      location.replace("https://edemy-next.herokuapp.com/");  
     })
     .catch(err => {
         console.log(err.response)
