@@ -1,13 +1,17 @@
 {
   "name": "elearning-express",
-  "version": "14.17.2",
+  "version": "0.1.0",
+  "engines": {
+    "node": "14.x"
+  },
   "private": true,
+  
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint -p $PORT",
-    "heroku-postbuild": "npm run build"
+    "heroku-postbuild": "npm run"
   },
   "dependencies": {
     "@ant-design/icons": "^4.6.2",
