@@ -1,6 +1,6 @@
 {
   "name": "elearning-express",
-  "version": "0.1.0",
+  "version": "14.17.2",
   "private": true,
   "scripts": {
     "dev": "next dev",
