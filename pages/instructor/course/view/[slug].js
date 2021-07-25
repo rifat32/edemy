@@ -76,7 +76,7 @@ toast(err.response.data.message)
 
         } catch(err) {
             console.log(err.response)
-            toast("Lesson Add Failed")
+            toast.error("You must fill up all the field ")
         }
        
     }
