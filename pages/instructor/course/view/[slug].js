@@ -17,9 +17,9 @@ const {ready} = UAppContext
     const [lesson,setLesson] = useState([]);
     const [visible,setVisible] = useState(false)
     const [values,setValues] = useState({
-        title:"fgzdfgzdgaz",
-        content:"fdgzdfgg",
-        video:"https://drive.google.com/uc?id=1kLO4cDndNZpYxhUpqZmfPSFfbDL3bCd6&export=media"
+        title:"",
+        content:"",
+        video:""
     })
     const [uploading,setUploading] = useState(false)
     const [uploadButtonText,setUploadButtonText] = useState("Upload Video")
@@ -58,7 +58,7 @@ toast(err.response.data.message)
                 id:course.id
             }
             )
-            // setValues({...values,title:"",content:"",video:""})
+             setValues({...values,title:"",content:"",video:""})
             
             setVisible(false)
             setUploadButtonText("Upload Vodeo")
