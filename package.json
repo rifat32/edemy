@@ -7,12 +7,13 @@
   "private": true,
   
   "scripts": {
-    "dev": "next",
+    "dev": "next dev",
     "build": "next build",
-    "start": "next start -p $PORT",
-    "heroku-postbuild": "npm run build",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "next start",
+    "lint": "next lint -p $PORT",
+    "heroku-postbuild": "npm run"
   },
+  
   "dependencies": {
     "@ant-design/icons": "^4.6.2",
     "antd": "^4.16.6",
