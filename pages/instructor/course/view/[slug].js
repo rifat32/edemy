@@ -58,7 +58,7 @@ toast(err.response.data.message)
                 id:course.id
             }
             )
-             setValues({...values,title:"",content:"",video:""})
+          setValues({...values,title:"",content:"",video:""})
             
             setVisible(false)
             setUploadButtonText("Upload Vodeo")
@@ -71,7 +71,7 @@ toast(err.response.data.message)
             )
             loadCourse()
            
-          
+
            
 
         } catch(err) {

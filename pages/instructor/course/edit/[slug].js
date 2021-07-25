@@ -260,8 +260,8 @@ e.dataTransfer.setData("itemIndex",index);
      const chunkLessons = [];
      let i,j,temparray;
      j=allLessonsArr.length
-     for (i=0; i<j; i+=5) {
-         temparray = allLessonsArr.slice(i,i+5);
+     for (i=0; i<j; i+=300) {
+         temparray = allLessonsArr.slice(i,i+300);
          // do whatever
          chunkLessons.push(temparray);
      }
