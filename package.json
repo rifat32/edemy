@@ -10,8 +10,8 @@
     "build": "next build",
     "start": "next start -p $PORT",
     "heroku-postbuild": "npm run build",
-    "lint": "next lint ",
-    "export":"next export"
+    "lint": "next lint "
+
   },
   "dependencies": {
     "@ant-design/icons": "^4.6.2",

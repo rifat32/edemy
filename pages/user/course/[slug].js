@@ -147,9 +147,10 @@ const SingleCourse = () => {
   </div>
   <ReactMarkdown 
   remarkPlugins={[gfm]} 
-   children={lessons[clicked].content}
    className="single-post"
-  />
+  >
+    lessons[clicked].content
+  </ReactMarkdown>
   
   
   </>):<div className="d-flex justify-content-center p-5">

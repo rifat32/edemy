@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { AppContext } from '../context';
 import {useRouter} from "next/router"
 
-const register = () => {
+const Register = () => {
  const [name,setName] = useState('');
  const [email,setEmail] = useState('');
  const [password,setPassword] = useState('');
@@ -84,4 +84,4 @@ const handleSubmit =   (e) => {
     )
 }
 
-export default register
+export default Register

@@ -8,7 +8,7 @@ import { AppContext } from '../context';
 import {useRouter} from "next/router"
 
 
-const login = () => {
+const Login = () => {
     const [email,setEmail] = useState('');
     const [password,setPassword] = useState('');
     const [loading,setLoading] = useState(false);
@@ -100,4 +100,4 @@ const login = () => {
        
    }
 
-export default login
+export default Login

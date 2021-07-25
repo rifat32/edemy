@@ -32,6 +32,23 @@ const SingleCourse = ({courses,lesson}) => {
     }
     return 0;
   })
+  const checkEnrollment = () => {
+    setLoading(true)
+    axios.get(`${process.env.PUBLIC_URL}/check-enrollment/${slug}`
+    )
+    .then(response => {
+      setLoading(false)
+setEnrolled(response.data.ok)
+console.log(response.data)
+if(!response.data.ok) {
+  setPending(response.data.pending)
+}
+    })
+    .catch(err => {  
+      setLoading(false)
+      console.log(err.response)
+    })
+  }
   useEffect(() => {
     if ((ready && slug)) {
       checkEnrollment()
@@ -77,23 +94,7 @@ const SingleCourse = ({courses,lesson}) => {
    })
   }
  
-  const checkEnrollment = () => {
-    setLoading(true)
-    axios.get(`${process.env.PUBLIC_URL}/check-enrollment/${slug}`
-    )
-    .then(response => {
-      setLoading(false)
-setEnrolled(response.data.ok)
-console.log(response.data)
-if(!response.data.ok) {
-  setPending(response.data.pending)
-}
-    })
-    .catch(err => {  
-      setLoading(false)
-      console.log(err.response)
-    })
-  }
+ 
 
     return (
         <>

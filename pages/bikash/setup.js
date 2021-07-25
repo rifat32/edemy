@@ -1,12 +1,11 @@
 import {useContext,useState} from 'react';
 import { AppContext } from '../../context';
-import UserRoutes from '../../components/Routes/UserRoutes';
 import {useRouter} from 'next/router';
 import { toast } from 'react-toastify';
 import axios from 'axios';
 import { SyncOutlined } from '@ant-design/icons';
 
-const calllback = () => {
+const Calllback = () => {
     const BAppContext = useContext(AppContext);
     const {state} = BAppContext 
     const {user} = state;
@@ -58,4 +57,4 @@ const calllback = () => {
     )
 }
 
-export default calllback
+export default Calllback

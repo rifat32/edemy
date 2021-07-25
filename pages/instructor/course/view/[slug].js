@@ -10,7 +10,7 @@ import AddLessonForm from '../../../../components/Forms/AddLessonForm';
 import { toast } from 'react-toastify';
 import { AppContext } from '../../../../context';
 
-const singleCourse = () => {
+const SingleCourse = () => {
       const UAppContext = useContext(AppContext);
 const {ready} = UAppContext 
     const [course,setCourse] = useState();
@@ -227,7 +227,10 @@ axios.put(`${process.env.PUBLIC_URL}/course/publish`, {
 </div>
 <div className="row">
     <div className="col">
-     <ReactMarkdown remarkPlugins={[gfm]}  children={course.description}/> 
+     <ReactMarkdown remarkPlugins={[gfm]}>
+    {course.description}
+     </ReactMarkdown>
+
     
     </div>
 
@@ -275,4 +278,4 @@ footer={null}
     )
 }
 
-export default singleCourse
+export default SingleCourse

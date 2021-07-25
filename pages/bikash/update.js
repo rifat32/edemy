@@ -7,7 +7,7 @@ import axios from 'axios';
 import { SyncOutlined } from '@ant-design/icons';
 import InstructorRoutes from '../../components/Routes/InstructorRoutes';
 
-const calllback = () => {
+const UpdateBkash = () => {
     const BAppContext = useContext(AppContext);
     const {state,setState} = BAppContext 
     const {user} = state;
@@ -61,4 +61,4 @@ const calllback = () => {
     )
 }
 
-export default calllback
+export default UpdateBkash

@@ -4,7 +4,7 @@ import InstructorRoutes from "../../components/Routes/InstructorRoutes";
 import {currencyFormatter} from '../../utils/helpers'
 import { DollarOutlined, SettingOutlined } from "@ant-design/icons";
 import router from "next/router";
-const revenue = () => {
+const Revenue = () => {
     const UAppContext = useContext(AppContext);
     const {state} = UAppContext;
     const payoutSettings = () => {
@@ -37,4 +37,4 @@ router.push("/bikash/update")
     )
 }
 
-export default revenue
+export default Revenue
