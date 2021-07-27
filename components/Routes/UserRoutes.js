@@ -29,7 +29,6 @@ const UserRoutes = ({children,showNav=true}) => {
                 setState({...state,user})
                window.localStorage.setItem("user",JSON.stringify(user));
             }
-    console.lof(res)
         })
         .catch((err) => {
    console.log(err)
