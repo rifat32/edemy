@@ -19,7 +19,7 @@ useEffect(() => {
         const user = JSON.parse(window.localStorage.getItem("user"));
         const token = JSON.parse(window.localStorage.getItem("token"));
         setState({...state,user,token})
-        if(state.token){
+        if(token){
             axios.interceptors.request.use(function (config) {
               
                 config.headers.Authorization = "Bearer " + token;
@@ -30,7 +30,7 @@ useEffect(() => {
           
         }
         else {
-            setReady(false)
+            setReady(true)
         }
        
             

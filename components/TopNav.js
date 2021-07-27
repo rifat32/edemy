@@ -81,7 +81,18 @@ console.log(window.location.pathname)
                       <a className=''>Become Instructor </a>
                   </Link>
               </Item>
-             ):null  
+             ):(
+                <Item
+                key="/user/become-instructor" 
+                icon={<TeamOutlined/>}
+                onClick={e => setCurrent(e.key)}
+                >
+   
+                  <Link href='/user/become-instructor'>
+                      <a className=''>Become Instructor </a>
+                  </Link>
+              </Item>
+             )
          }
          {
              user && user.role && user.role.includes("instructor") && (

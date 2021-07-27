@@ -11,8 +11,10 @@ const UserRoutes = ({children,showNav=true}) => {
     const {state,setState,ready} = UAppContext 
     const router = useRouter();
     useEffect(() => {
+      
         if(ready){
             fetchUser();
+              console.log('ghdjd')
         }
 
 
@@ -27,12 +29,13 @@ const UserRoutes = ({children,showNav=true}) => {
                 setState({...state,user})
                window.localStorage.setItem("user",JSON.stringify(user));
             }
-    
+    console.lof(res)
         })
         .catch((err) => {
    console.log(err)
    setOk(false)
    router.push("/login")
+   console.log(err.response)
  
         })
     }
