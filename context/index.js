@@ -30,7 +30,7 @@ useEffect(() => {
           
         }
         else {
-            setReady(true)
+            setReady(false)
         }
        
             
