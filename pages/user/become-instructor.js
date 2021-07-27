@@ -12,7 +12,6 @@ const BecomeInstructor = () => {
   const router = useRouter()
   const becomeInstructor = () => {
     router.push("/bikash/setup")
- 
   }
     return (
         <UserRoutes>
