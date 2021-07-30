@@ -9,6 +9,7 @@ const [state,setState] = useState({
     user:null,
     token:null,
 });
+const [changeState,setChangeState] = useState(false);
 const [ready,setReady] = useState(false)
 
 
@@ -50,7 +51,9 @@ return (
         state,
         setState,
         ready,
-        setReady
+        setReady,
+        setChangeState,
+        changeState
     }
        
     }>

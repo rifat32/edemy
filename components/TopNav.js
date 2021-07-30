@@ -109,7 +109,7 @@ console.log(window.location.pathname)
               </Item> 
              ) 
          }
-           {user === null && (
+           {user === null?  (
                <>
   <Item
              key="/login" 
@@ -132,7 +132,7 @@ console.log(window.location.pathname)
                </Link>
            </Item>
                </>
-           )}
+           ):null}
            {
                user !== null &&  (
                <SubMenu  key="/submenu" icon={<CoffeeOutlined/>} title={user && user.name} className={ user && user.role && user.role.includes("instructor") ?"" : "ms-auto me-3"}>

@@ -14,15 +14,19 @@ const Login = () => {
     const [loading,setLoading] = useState(false);
 
     const LAppContext = useContext(AppContext);
-    const {state,setState} = LAppContext
+    const {state,setState,setChangeState,
+        changeState} = LAppContext
      
     const router = useRouter();
     const {user} = state
     useEffect(() => {
     if(user) {
- router.push("/")
+       router.push("/");
     }
+
+    
     },[user])
+    
 
  
    
@@ -37,22 +41,26 @@ const Login = () => {
        )
        .then(response => {
            setLoading(false)
-          const {ok,user,token,status}=  response.data
-           if(ok) {
-            setState({...state,user,token})
+          const {ok,user,token}=  response.data
+         
+           setState({user:user,token})
+          
+           setChangeState(!changeState)
+       
              window.localStorage.setItem("user",JSON.stringify(user))
              window.localStorage.setItem("token",JSON.stringify(token))
             console.log(user,token)
-             router.back();
-           }
-           if(status === 422) {
-            toast.error("Invalid Credentials")
-           }
+            
+            location.replace("https://edemy-next.herokuapp.com/"); 
+          
           
            
           
        })
        .catch(err=> {
+        if(err.response.status === 422) {
+            toast.error("Invalid Credentials")
+           }
            console.log(err)
            setLoading(false)
            
