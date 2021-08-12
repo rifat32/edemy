@@ -1,7 +1,7 @@
 import {useContext,useEffect,useState} from 'react';
 import {AppContext} from '../../context';
 import UserRoutes from '../../components/Routes/UserRoutes';
-import axios from 'axios'
+import axios from '../../utils/axios'
 import { Avatar } from 'antd';
 import Link from 'next/link';
 import { SyncOutlined,PlayCircleOutlined } from '@ant-design/icons';
@@ -11,17 +11,17 @@ const User = () => {
   const [courses,setCourses] = useState([]);
   const [loading,setLoading] = useState(false)
     const UAppContext = useContext(AppContext);
-    const {state,setState,ready} = UAppContext;
-    const {user} = state;
+    const {user} = UAppContext;
+    
     useEffect(() => {
-      if(ready){
+    
         loadCourses()
-    }
+    
 
-    },[ready])
+    },[])
     const loadCourses = () => {
       setLoading(true)
-axios.get(`${process.env.PUBLIC_URL}/user-courses`)
+axios().get(`${process.env.PUBLIC_URL}/user-courses`)
 .then(response => {
 console.log(response);
 setCourses(response.data.courses)

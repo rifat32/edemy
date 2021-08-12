@@ -1,7 +1,7 @@
 import {useRouter} from 'next/router'
 import UserRoutes from '../../../components/Routes/UserRoutes'
 import { useEffect,useState } from 'react';
-import axios from 'axios';
+import axios from '../../../utils/axios';
 import {SyncOutlined} from '@ant-design/icons';
 import { toast } from 'react-toastify';
 

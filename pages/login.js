@@ -13,22 +13,21 @@ const Login = () => {
     const [password,setPassword] = useState('');
     const [loading,setLoading] = useState(false);
 
-    const LAppContext = useContext(AppContext);
-    const {state,setState,setChangeState,
-        changeState} = LAppContext
+  const LAppContext = useContext(AppContext)
+    const {
+        user, setUser
+        } = LAppContext
      
     const router = useRouter();
-    const {user} = state
+    
     useEffect(() => {
     if(user) {
-       router.push("/");
+       router.back;
     }
 
     
     },[user])
     
-
- 
    
    const handleSubmit =   (e) => {
        e.preventDefault();
@@ -43,15 +42,13 @@ const Login = () => {
            setLoading(false)
           const {ok,user,token}=  response.data
          
-           setState({user:user,token})
-          
-           setChangeState(!changeState)
-       
+         
              window.localStorage.setItem("user",JSON.stringify(user))
-             window.localStorage.setItem("token",JSON.stringify(token))
-            console.log(user,token)
+             window.localStorage.setItem("token",token)
+             console.log(user,token)
+             setUser(user)
             
-            location.replace("https://edemy-next.herokuapp.com/"); 
+           router.back();
           
           
            

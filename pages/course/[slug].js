@@ -1,4 +1,5 @@
 import axios from "axios"
+import axiosCustom from "../../utils/axios"
 import { useState, useEffect,useContext } from "react"
 import { useRouter } from "next/router";
 // import { Badge, Modal } from "antd";
@@ -18,8 +19,7 @@ const SingleCourse = ({courses,lesson}) => {
   const [enrolled,setEnrolled] = useState(false);
   const [pending,setPending] = useState(false);
   const UAppContext = useContext(AppContext);
-  const {state,ready} = UAppContext
-  const {user} = state
+  const {user} = UAppContext
     const router = useRouter();
     const {slug} = router.query;
     const {name,description,price,image,category,instructor_name,updated_at,paid} = courses
@@ -34,7 +34,7 @@ const SingleCourse = ({courses,lesson}) => {
   })
   const checkEnrollment = () => {
     setLoading(true)
-    axios.get(`${process.env.PUBLIC_URL}/check-enrollment/${slug}`
+    axiosCustom().get(`${process.env.PUBLIC_URL}/check-enrollment/${slug}`
     )
     .then(response => {
       setLoading(false)
@@ -50,10 +50,10 @@ if(!response.data.ok) {
     })
   }
   useEffect(() => {
-    if ((ready && slug)) {
+    if ( slug) {
       checkEnrollment()
   }
-  },[ready, slug])
+  },[slug])
   const handlePaidEnrollment = () => {
     console.log("handle paid")
     if(!user) {
@@ -77,7 +77,7 @@ if(!response.data.ok) {
     router.push(`/user/course/${slug}`)
     return
    }
-   axios.post(`${process.env.PUBLIC_URL}/free-enrollment`,{
+   axiosCustom().post(`${process.env.PUBLIC_URL}/free-enrollment`,{
      slug
    })
    .then(response => {

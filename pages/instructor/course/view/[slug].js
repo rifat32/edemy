@@ -1,18 +1,18 @@
-import {useState,useEffect,useContext} from 'react';
+import {useState,useEffect,} from 'react';
 import { useRouter } from 'next/router';
 import InstructorRoutes from '../../../../components/Routes/InstructorRoutes';
-import axios from 'axios';
+import axios from '../../../../utils/axios';
 import { Avatar, Tooltip, Button,Modal } from 'antd';
 import { EditOutlined, CheckOutlined, UploadOutlined, QuestionOutlined, CloseOutlined, UserSwitchOutlined } from '@ant-design/icons';
 import ReactMarkdown from 'react-markdown';
 const gfm = require('remark-gfm')
 import AddLessonForm from '../../../../components/Forms/AddLessonForm';
 import { toast } from 'react-toastify';
-import { AppContext } from '../../../../context';
+
 
 const SingleCourse = () => {
-      const UAppContext = useContext(AppContext);
-const {ready} = UAppContext 
+    
+
     const [course,setCourse] = useState();
     const [lesson,setLesson] = useState([]);
     const [visible,setVisible] = useState(false)
@@ -28,15 +28,15 @@ const {ready} = UAppContext
     const router = useRouter();
     const {slug} = router.query;
     useEffect(() => {
-         if(ready && slug){
+         if(slug){
             loadCourse()
         }
   
-    },[ready,slug])
+    },[slug])
     // @@@@@@@@@@@@@@@@ load course @@@@@@@@@@@@@@@@@@@
     const loadCourse = async () => {
         try{
-            const {data} = await axios.get(`${process.env.PUBLIC_URL}/courses/${slug}`)
+            const {data} = await axios().get(`${process.env.PUBLIC_URL}/courses/${slug}`)
             setCourse(data.courses)
             setLesson(data.lessons)
             console.log(data.courses)
@@ -52,7 +52,7 @@ toast(err.response.data.message)
         e.preventDefault()
         console.log(values)
         try {
-            const {data} = await   axios.post(`${process.env.PUBLIC_URL}/course/lesson`,
+            const {data} = await   axios().post(`${process.env.PUBLIC_URL}/course/lesson`,
             {
                 ...values,
                 id:course.id
@@ -64,7 +64,7 @@ toast(err.response.data.message)
             setUploadButtonText("Upload Vodeo")
             toast("Lesson Added")
             console.log(data)
-            await  axios.post(`${process.env.PUBLIC_URL}/number-of-lesson`,
+            await  axios().post(`${process.env.PUBLIC_URL}/number-of-lesson`,
             {
                 id:course.id
             }
@@ -89,7 +89,7 @@ toast(err.response.data.message)
     setUploadButtonText(file.name);
     let videoData = new FormData();
     videoData.append('video', file, file.name);
-    const {data} = await   axios.post(`${process.env.PUBLIC_URL}/course/upload-video`, videoData, {
+    const {data} = await   axios().post(`${process.env.PUBLIC_URL}/course/upload-video`, videoData, {
         onUploadProgress:(e) => {
             setProgress(Math.round((100 * e.loaded)/e.total))
         }
@@ -112,7 +112,7 @@ toast(err.response.data.message)
         console.log("handle remove video")
         try {
             setUploading(true)
-            const {data} = await   axios.post(`${process.env.PUBLIC_URL}/course/remove-video`,{
+            const {data} = await   axios().post(`${process.env.PUBLIC_URL}/course/remove-video`,{
                 videoId:videoId
             })
             console.log(data)
@@ -130,7 +130,7 @@ toast(err.response.data.message)
       const handleUnPublish = () => {
 let answer = window.confirm(" Once you will unpublish your course. it will not be available for users to enroll")
 if(!answer){return}
-axios.put(`${process.env.PUBLIC_URL}/course/publish`, {
+axios().put(`${process.env.PUBLIC_URL}/course/publish`, {
     id:course.id,
     published:false
   })
@@ -149,7 +149,7 @@ axios.put(`${process.env.PUBLIC_URL}/course/publish`, {
        
  let answer = window.confirm(" Once you will publish your course. it will be live in the marketplace")  
  if(!answer){return}
- axios.put(`${process.env.PUBLIC_URL}/course/publish`, {
+ axios().put(`${process.env.PUBLIC_URL}/course/publish`, {
     id:course.id,
     published:true
   })

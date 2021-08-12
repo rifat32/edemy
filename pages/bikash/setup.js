@@ -2,7 +2,7 @@ import {useContext,useState} from 'react';
 import { AppContext } from '../../context';
 import {useRouter} from 'next/router';
 import { toast } from 'react-toastify';
-import axios from 'axios';
+import axios from '../../utils/axios';
 import { SyncOutlined } from '@ant-design/icons';
 
 const Calllback = () => {
@@ -15,7 +15,7 @@ const Calllback = () => {
     const handleSubmit = (e) => {
      e.preventDefault();
      setLoading(true);
-     axios.post(`${process.env.PUBLIC_URL}/make-instructor`,{num},
+     axios().post(`${process.env.PUBLIC_URL}/make-instructor`,{num},
     )
      .then(res => {
         setLoading(false);

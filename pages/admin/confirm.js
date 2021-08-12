@@ -1,6 +1,6 @@
 import {useEffect,useState} from 'react';
 import AdminRoutes from '../../components/Routes/AdminRoutes';
-import axios from 'axios';
+import axios from '../../utils/axios';
 
 const Confirm = () => {
     const [payments,setPayments] = useState([]);
@@ -8,7 +8,7 @@ const Confirm = () => {
     loadPayments();
     },[]);
     const loadPayments = () => {
-axios.get(`${process.env.PUBLIC_URL}/all-payment`)
+axios().get(`${process.env.PUBLIC_URL}/all-payment`)
 .then(response => {
 setPayments(response.data.payments)
 console.log(response)
@@ -19,7 +19,7 @@ console.log(response)
     }
     const handleConfirm = (el) => {
         console.log(el)
-        axios.post(`${process.env.PUBLIC_URL}/confirm-payment`,{
+        axios().post(`${process.env.PUBLIC_URL}/confirm-payment`,{
             id:el.id,
             user_id:el.user_id,
             course_slug:el.course_slug,

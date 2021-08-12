@@ -1,18 +1,18 @@
 import { useState, useEffect, useContext } from 'react';
-import axios from 'axios'
+import axios from '../../../../utils/axios'
 import InstructorRoutes from '../../../../components/Routes/InstructorRoutes';
 import CourseCreateForm from '../../../../components/Forms/CourseCreateForm'
 import Resizer from "react-image-file-resizer";
 import { toast } from 'react-toastify';
 import { useRouter } from 'next/router';
-import { AppContext } from '../../../../context';
+
 import { Avatar, Modal} from 'antd';
 import {DeleteOutlined} from '@ant-design/icons'
 import UpdateLessonForm from '../../../../components/Forms/UpdateLessonForm';
 
 const CourseEdit = () => {
-    const UAppContext = useContext(AppContext);
-    const { ready } = UAppContext
+    
+   
     const router = useRouter()
     const { slug } = router.query;
 
@@ -39,16 +39,15 @@ const CourseEdit = () => {
    const [uploading,setUploading] = useState(false)
    const [updateState,setUpdateState] = useState(false)
     useEffect(() => {
-        if ((ready && slug)) {
+        if (slug) {
 
             loadCourse()
-
         }
 
-    }, [ready, slug])
+    }, [slug])
    
     const loadCourse = async () => {
-        const { data } = await axios.get(`${process.env.PUBLIC_URL}/courses/${slug}`)
+        const { data } = await axios().get(`${process.env.PUBLIC_URL}/courses/${slug}`)
         console.log(data.courses)
         if (data.courses) {
             const { name, description, category, price, paid, image } = data.courses
@@ -75,7 +74,7 @@ const CourseEdit = () => {
 
             let data = new FormData();
             data.append('image', uri, uri.name);
-            axios.post(`${process.env.PUBLIC_URL}/course/upload-image`, data, {
+            axios().post(`${process.env.PUBLIC_URL}/course/upload-image`, data, {
                 headers: {
                     'accept': 'application/json',
                     'Accept-Language': 'en-US,en;q=0.8',
@@ -112,7 +111,7 @@ const CourseEdit = () => {
             slug 
         }
         console.log(data)
-        axios.put(`${process.env.PUBLIC_URL}/course`,
+        axios().put(`${process.env.PUBLIC_URL}/course`,
          data
          )
             .then(response => {
@@ -133,7 +132,7 @@ const CourseEdit = () => {
 
         setValues({ ...values, loading: false })
         
-        axios.post(`${process.env.PUBLIC_URL}/course/remove-image`, {
+        axios().post(`${process.env.PUBLIC_URL}/course/remove-image`, {
             imageId
         })
             .then(res => {
@@ -163,7 +162,7 @@ const CourseEdit = () => {
      const dataId = {id: removed[0].id}
    
      if(dataId.id){
-      axios.post(`${process.env.PUBLIC_URL}/lesson/delete`,dataId)
+      axios().post(`${process.env.PUBLIC_URL}/lesson/delete`,dataId)
       .then(response => {
           console.log(response)
       })
@@ -177,7 +176,7 @@ const CourseEdit = () => {
     const handleVideoRemove = async (e) => {
         try {
             setUploading(true)
-            const {data} = await   axios.post(`${process.env.PUBLIC_URL}/course/remove-video`,{
+            const {data} = await   axios().post(`${process.env.PUBLIC_URL}/course/remove-video`,{
                 videoId:videoId
             })
             console.log(data)
@@ -204,7 +203,7 @@ const CourseEdit = () => {
             setUploadVideoButtonText(file.name);
             let videoData = new FormData();
             videoData.append('video', file, file.name);
-            const {data} = await   axios.post(`${process.env.PUBLIC_URL}/course/upload-video`, videoData, {
+            const {data} = await   axios().post(`${process.env.PUBLIC_URL}/course/upload-video`, videoData, {
                 onUploadProgress:(e) => {
                     setProgress(Math.round((100 * e.loaded)/e.total))
                 }
@@ -224,7 +223,7 @@ const CourseEdit = () => {
     }
     const handleUpdateLesson = (e) => {
         e.preventDefault()
-        axios.put(`${process.env.PUBLIC_URL}/course/lesson`, {
+        axios().put(`${process.env.PUBLIC_URL}/course/lesson`, {
           ...current
         })
             .then(res => {
@@ -267,7 +266,7 @@ e.dataTransfer.setData("itemIndex",index);
      }
      chunkLessons.map((el) => {
          
-        axios.put(`${process.env.PUBLIC_URL}/drag`,
+        axios().put(`${process.env.PUBLIC_URL}/drag`,
         {
             lessonsArr:el
         }

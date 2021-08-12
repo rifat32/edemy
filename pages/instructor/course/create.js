@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import axios from 'axios'
+import axios from '../../../utils/axios'
 import InstructorRoutes from '../../../components/Routes/InstructorRoutes';
 import CourseCreateForm from '../../../components/Forms/CourseCreateForm';
 import Resizer from "react-image-file-resizer";
@@ -34,7 +34,7 @@ const InstructorCreateCourse = () => {
 
             let data = new FormData();
             data.append('image', uri, uri.name);
-            axios.post(`${process.env.PUBLIC_URL}/course/upload-image`, data, {
+            axios().post(`${process.env.PUBLIC_URL}/course/upload-image`, data, {
                 headers: {
                     'accept': 'application/json',
                     'Accept-Language': 'en-US,en;q=0.8',
@@ -69,7 +69,7 @@ const InstructorCreateCourse = () => {
             image
         }
         console.log(data)
-        axios.post(`${process.env.PUBLIC_URL}/course`, data)
+        axios().post(`${process.env.PUBLIC_URL}/course`, data)
             .then(response => {
                
                 toast("Greate! Now you can Start adding lectures")
@@ -89,7 +89,7 @@ const InstructorCreateCourse = () => {
 
         setValues({ ...values, loading: false })
         
-        axios.post(`${process.env.PUBLIC_URL}/course/remove-image`, {
+        axios().post(`${process.env.PUBLIC_URL}/course/remove-image`, {
             imageId
         })
             .then(res => {

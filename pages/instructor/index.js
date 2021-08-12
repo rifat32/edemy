@@ -1,5 +1,5 @@
 import {useEffect,useState,useContext} from 'react';
-import axios from 'axios';
+import axios from '../../utils/axios';
 import InstructorRoutes from '../../components/Routes/InstructorRoutes';
 import { Avatar, Tooltip } from 'antd';
 import Link from 'next/link';
@@ -9,16 +9,16 @@ import { AppContext } from '../../context';
 
 const Instructorindex = () => {
     const UAppContext = useContext(AppContext);
-const {ready} = UAppContext 
+
     const [courses,setCourses] = useState([]);
     useEffect(() => {
-        if(ready){
+      
             loadCourses()
-        }
-    },[ready]);
+        
+    },[]);
     const loadCourses = () => {
         
-        axios.get(`${process.env.PUBLIC_URL}/instructor-courses`)
+        axios().get(`${process.env.PUBLIC_URL}/instructor-courses`)
         .then(response => {
             console.log(response.data)
              setCourses(response.data.courses)

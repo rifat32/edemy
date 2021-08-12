@@ -1,5 +1,5 @@
 import {useState,useContext,useEffect} from 'react';
-import axios from 'axios';
+import axios from '../utils/axios';
 import {toast } from 'react-toastify';
 import {SyncOutlined} from '@ant-design/icons';
 import Link from 'next/link';
@@ -29,7 +29,7 @@ const handleSubmit =   (e) => {
         email,
         password
     }
-     axios.post(`${process.env.PUBLIC_URL}/register`,postData
+     axios().post(`${process.env.PUBLIC_URL}/register`,postData
     )
     .then(response => {
         setLoading(false)

@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import axios from 'axios';
+import axios from '../../../utils/axios';
 import { useState, useEffect,useContext, createElement } from "react";
 import { AppContext } from "../../../context";
 import StudentRoutes from "../../../components/Routes/StudentRoutes";
@@ -21,18 +21,18 @@ const SingleCourse = () => {
     const router = useRouter();
     const {slug} = router.query;
     const UAppContext = useContext(AppContext);
-    const {state,setState,ready} = UAppContext;
+ 
     useEffect(() => {
-        if(ready && slug){
+        if(slug){
           loadCourses()
           loadCompletedLessons()
       }
   
-      },[ready,slug])
+      },[slug])
     
       const loadCourses = () => {
         setLoading(true)
-        axios.get(`${process.env.PUBLIC_URL}/user-courses/${slug}`)
+        axios().get(`${process.env.PUBLIC_URL}/user-courses/${slug}`)
         .then(response => {
         console.log(response);
         setCourses(response.data.courses)
@@ -45,7 +45,7 @@ const SingleCourse = () => {
         })
       }
       const loadCompletedLessons = () => {
-        axios.post(`${process.env.PUBLIC_URL}/list-completed`,{
+        axios().post(`${process.env.PUBLIC_URL}/list-completed`,{
           course_slug:slug
         })
         .then(response => {
@@ -61,7 +61,7 @@ const SingleCourse = () => {
       }
       const markCompleted = () => {
         setCompletedLessons([...completedLessons,lessons[clicked].id])
-        axios.post(`${process.env.PUBLIC_URL}/complete-lesson`,{
+        axios().post(`${process.env.PUBLIC_URL}/complete-lesson`,{
           course_slug:slug,
           lesson_id : lessons[clicked].id
         })
@@ -83,7 +83,7 @@ const SingleCourse = () => {
           setCompletedLessons(all)
           setUpdateState(!updateState);
         }
-        axios.post(`${process.env.PUBLIC_URL}/incomplete-lesson`,{
+        axios().post(`${process.env.PUBLIC_URL}/incomplete-lesson`,{
           course_slug:slug,
           lesson_id : lessons[clicked].id
         })

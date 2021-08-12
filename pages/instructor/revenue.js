@@ -6,7 +6,7 @@ import { DollarOutlined, SettingOutlined } from "@ant-design/icons";
 import router from "next/router";
 const Revenue = () => {
     const UAppContext = useContext(AppContext);
-    const {state} = UAppContext;
+    const {user} = UAppContext;
     const payoutSettings = () => {
 router.push("/bikash/update")
     } 
@@ -22,7 +22,7 @@ router.push("/bikash/update")
  <hr/>
  <h4>
      Pending Balance <span className="float-end">
-     BDT  {state.user && state.user.balance}
+     BDT  {user && user.balance}
      </span>
  </h4>
  <small>For last 48 hours</small>

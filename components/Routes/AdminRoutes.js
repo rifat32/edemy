@@ -1,5 +1,5 @@
-import {useEffect,useState,useContext} from 'react';
-import axios from 'axios';
+import {useEffect,useState,} from 'react';
+import axios from '../../utils/axios';
 import {useRouter} from 'next/router'
 import {SyncOutlined} from '@ant-design/icons'
 import AdminNav from '../Nav/AdminNav';
@@ -7,21 +7,21 @@ import { AppContext } from '../../context';
 
 const AdminRoutes = ({children}) => {
     const [ok,setOk] = useState(false);
-    const UAppContext = useContext(AppContext);
-    const {state,setState,ready} = UAppContext 
+    
+ 
     const router = useRouter();
 
     useEffect(() => {
-if(ready){
+
     
       fetchInstructor();
-}
 
 
-    },[ready])
+
+    },[])
     const fetchInstructor = () => {
         
-            axios.get(`${process.env.PUBLIC_URL}/current-admin`,
+            axios().get(`${process.env.PUBLIC_URL}/current-admin`,
 
             )
             .then(res => {
@@ -29,8 +29,7 @@ if(ready){
              const {ok,user} =  res.data
                 if(ok) {
                     setOk(true)
-                     setState({...state,user})
-    
+                
                       window.localStorage.setItem("user",JSON.stringify(user));
                 }
         

@@ -8,8 +8,7 @@ import { useState, useEffect,useContext } from 'react';
 import {AppContext} from '../context';
 import {toast } from 'react-toastify';
 import {useRouter} from 'next/router';
-import User from '../pages/user';
-import axios from 'axios';
+import axios from '../utils/axios';
 
 
 
@@ -17,19 +16,19 @@ import axios from 'axios';
 const TopNav = () => {
  const [current,setCurrent] = useState("")
  const TAppContext = useContext(AppContext);
-  const {state,setState,
-    setReady} = TAppContext 
-  const {user,token} = state;
+  const {user,setUser} = TAppContext 
+ 
   const router = useRouter()
   
   const logout =  () => {
-    axios.post(`${process.env.PUBLIC_URL}/logout`)
+   
+    axios().post(`${process.env.PUBLIC_URL}/logout`)
     .then(response => {
-        setState({...state,user:null,token:null});
         window.localStorage.clear();
-        setReady(false)
         toast("Signout Success");
-      location.replace("https://edemy-next.herokuapp.com/");  
+        setUser(null)
+        location.replace("https://edemy-next.herokuapp.com/");  
+      
     })
     .catch(err => {
         console.log(err.response)

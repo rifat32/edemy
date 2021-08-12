@@ -1,5 +1,5 @@
 import {useEffect,useState,useContext} from 'react';
-import axios from 'axios';
+import axios from '../../utils/axios';
 import {useRouter} from 'next/router'
 import {SyncOutlined} from '@ant-design/icons'
 import { AppContext } from '../../context';
@@ -7,23 +7,22 @@ import { AppContext } from '../../context';
 const StudentRoutes = ({children}) => {
     const [ok,setOk] = useState(false);
     const UAppContext = useContext(AppContext);
-    const {state,setState,ready} = UAppContext 
+
     const router = useRouter();
     useEffect(() => {
-        if(ready){
+        
             fetchUser();
-        }
+        
 
 
-    },[ready])
+    },[])
     const fetchUser = () => {
-        axios.get(`${process.env.PUBLIC_URL}/user`,
+        axios().get(`${process.env.PUBLIC_URL}/user`,
         )
         .then(res => {
          const {ok,user} =  res.data
             if(ok) {
                 setOk(true)
-                setState({...state,user})
                window.localStorage.setItem("user",JSON.stringify(user));
             }
     
