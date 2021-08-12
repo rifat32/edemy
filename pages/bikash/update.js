@@ -9,8 +9,8 @@ import InstructorRoutes from '../../components/Routes/InstructorRoutes';
 
 const UpdateBkash = () => {
     const BAppContext = useContext(AppContext);
-    const {state,setState} = BAppContext 
-    const {user} = state;
+    const {user} = BAppContext 
+
     const [num,setNum] = useState("");
     const [loading,setLoading] = useState(false);
     const router = useRouter();
@@ -26,8 +26,7 @@ const UpdateBkash = () => {
         setLoading(false);
          if(res.data.ok){
              console.log('success')
-             setState({...state,user:{...user,bikashNumber:num}})
-        
+             
          }
      })
      .catch(err=> {

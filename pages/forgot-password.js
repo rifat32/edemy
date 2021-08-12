@@ -14,9 +14,9 @@ const ForgotPassword = () => {
     const [newPassword,setNewPassword] = useState('');
     const [loading,setLoading] = useState(false); 
     const FAppContext = useContext(AppContext);
-    const {state,setState} = FAppContext
+    const {user} = FAppContext
    const router = useRouter();
-   const {user} = state;
+  
    useEffect(() => {
 
 if(user) {

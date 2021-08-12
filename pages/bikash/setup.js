@@ -7,8 +7,8 @@ import { SyncOutlined } from '@ant-design/icons';
 
 const Calllback = () => {
     const BAppContext = useContext(AppContext);
-    const {state} = BAppContext 
-    const {user} = state;
+    const {user} = BAppContext 
+ 
     const [num,setNum] = useState("");
     const [loading,setLoading] = useState(false);
     const router = useRouter();

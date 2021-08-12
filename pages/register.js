@@ -13,9 +13,9 @@ const Register = () => {
  const [loading,setLoading] = useState(false);
 
  const RAppContext = useContext(AppContext);
-    const {state,setState} = RAppContext
+    const {user} = RAppContext
     const router = useRouter();
-    const {user} = state
+
     useEffect(() => {
     if(user) {
  router.push("/")
